@@ -1,0 +1,37 @@
+version: '3.3'
+      
+volumes:
+  pocketBased:
+
+networks:
+  wc_stack:
+    name: wc_stack_network
+    ipam:
+      config:
+        - subnet: 172.5.0.0/16
+
+services:
+  pb_server:
+    image: waycheck_pocketbase
+    build: ./pocketbase
+    ports:
+      - 8008:8008
+    volumes:
+      - pocketBased:/pb/pb_data
+    networks:
+      wc_stack:
+        ipv4_address: 172.5.0.3
+  bun_server:
+    image: wc_bun
+    build: ./bun_server
+    ports:
+      - 8081:8081
+    env_file:
+      - ./bun_server/.env
+    networks:
+      wc_stack:
+        ipv4_address: 172.5.0.4
+
+# run with "docker-compose up --build"
+# always kill with "docker-compose down" afterwards
+# remove dangling images with "docker image prune"
