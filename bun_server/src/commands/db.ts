@@ -2,6 +2,7 @@ import { CommandInteraction, Client, Options, SlashCommandStringOption, Applicat
 import { type Command } from "../Command";
 import { getAllEntries } from "../pb_crud";
 
+/*
 export const PocketBased: Command = {
     name: "db",
     description: "Perform a CRUD",
@@ -46,3 +47,4 @@ export const PocketBased: Command = {
         }
     }
 };
+*/
