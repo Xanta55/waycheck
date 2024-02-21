@@ -17,8 +17,6 @@ export const CreateCall: Command = {
     run: async (client: Client, interaction: CommandInteraction) => {
         try {
             let doesExist = await isCharacterExist(interaction.member?.user.id ?? '', interaction.guildId ?? '');
-            console.log('userID: ' + interaction.member?.user.id);
-            console.log('guildID: ' + interaction.guild?.id);
             switch (doesExist) {
                 case EXISTS.NONE: {
                     let wcName: string = interaction.options.get('name')!.value!.toString();
