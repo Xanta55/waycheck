@@ -1,5 +1,6 @@
 import { type Command } from "./Command";
+import { CreateCall } from "./commands/create";
 import { PocketBased } from "./commands/db";
-import { Hello } from "./commands/hello";
+import { Reload } from "./commands/reload";
 
-export const Commands: Command[] = [Hello, PocketBased];
+export const Commands: Command[] = [PocketBased, CreateCall, Reload];

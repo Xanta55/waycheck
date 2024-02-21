@@ -1,7 +1,6 @@
 import { CommandInteraction, Client, Options, SlashCommandStringOption, ApplicationCommandOptionBase, ApplicationCommandOptionType, ApplicationCommandType } from "discord.js";
 import { type Command } from "../Command";
-import { createEntry, getAllEntries } from "../pb_crud";
-import type { RecordModel } from "pocketbase";
+import { getAllEntries } from "../pb_crud";
 
 export const PocketBased: Command = {
     name: "db",
@@ -21,10 +20,8 @@ export const PocketBased: Command = {
                 let response = await getAllEntries(table);
 
                 let rs: string = response.map((e) => e.Ough).join(', ');
-
-                response.forEach((e)=>console.log(e));
         
-                const content = "Hello there, dear " + interaction.member?.user.username + "!\nThis stuff was in your table:\n"+rs;
+                const content = "Hello there, dear " + interaction.member?.user.id + "!\nThis stuff was in your table:\n"+rs;
         
                 await interaction.followUp({
                     ephemeral: true,
