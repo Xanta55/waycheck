@@ -1,6 +1,9 @@
 import { ClientResponseError, type RecordModel } from "pocketbase";
 import "../pb_crud";
-import { createEntry, getAllEntriesWhere, getEntryWhere } from "../pb_crud";
+import { createEntry, getAllEntriesWhere } from "../pb_crud";
+import type { Waycheck } from "../models/wc";
+import type { Inventory } from "../models/wc_inventory";
+//import { Inventory } from "../models/wc_inventory";
 
 export enum EXISTS {
     PRESENT,
@@ -18,15 +21,15 @@ export enum EXISTS {
  */
 export async function createNewCharacter(userID: string, nameIn: string, serverIn: string) {
     try {
-        let inventoryRM = await createEntry("inventories", {
+        let inventory = await createEntry<Inventory>("inventories", {
             items: {},
         });
         
-        createEntry("waycheckers", {
+        let wc: Waycheck = await createEntry<Waycheck>("waycheckers", {
             discordID: userID,
             serverID: serverIn,
             name: nameIn,
-            inventory: inventoryRM.id,
+            inventory: inventory.id,
             stats: {
                 level_walk: 0,
                 level_fish: 0,
@@ -39,6 +42,8 @@ export async function createNewCharacter(userID: string, nameIn: string, serverI
             },
             activity: "idle",
         });
+
+        console.log(wc);
 
         console.log('Created new Character with name "' + nameIn + '"');
     } catch (errorCharacter) {

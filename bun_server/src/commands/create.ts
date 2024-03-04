@@ -1,7 +1,6 @@
-import { CommandInteraction, Client, Options, SlashCommandStringOption, ApplicationCommandOptionBase, ApplicationCommandOptionType, ApplicationCommandType } from "discord.js";
+import { CommandInteraction, Client, ApplicationCommandOptionType } from "discord.js";
 import { type Command } from "../Command";
-import { getAllEntries } from "../pb_crud";
-import { EXISTS, createNewCharacter, isCharacterExist } from "../db_ops/createCharacter";
+import { EXISTS, createNewCharacter, isCharacterExist } from "../db_ops/wcc_create";
 
 export const CreateCall: Command = {
     name: "create",

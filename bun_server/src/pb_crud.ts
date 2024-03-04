@@ -1,8 +1,14 @@
-import type { ClientResponseError, RecordModel } from "pocketbase";
+import type { RecordModel } from "pocketbase";
 import { pb } from ".";
 
+/*
 export function createEntry(collectionID: string, bodyParams?: { [key: string]: any }): Promise<RecordModel> {
     return pb.collection(collectionID).create(bodyParams);
+}
+*/
+
+export function createEntry<T>(collectionID: string, bodyParams?: { [key: string]: any }): Promise<T> {
+    return pb.collection(collectionID).create<T>(bodyParams);
 }
 
 export async function getAllEntries(collectionID: string): Promise<RecordModel[]> {
