@@ -1,5 +1,8 @@
 # WayCheck FullStack
 
+A Discordbot which is to be deployed in a container.
+WayCheck is supposed to be an Discord-Idle-Game, in which Users can walk or fish. Every once in a while they can perform a WayCheck, which will make other actions faster.
+
 ## Bun
 To install dependencies:
 ```bash
